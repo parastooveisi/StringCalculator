@@ -70,7 +70,7 @@ class TestPartOne(unittest.TestCase):
 
     def test_parse_input_with_arbitrary_length_delimiter(self):
         self.assertEqual(StringCalculator().parse_input(
-            "1$$$2$$$3"), [1, 2, 3])
+            "1$$$2$$$3", "$$$"), [1, 2, 3])
 
     def test_extract_delimiter_without_delimiter(self):
         self.assertEqual(StringCalculator().extract_delimiter(
@@ -103,3 +103,7 @@ class TestPartOne(unittest.TestCase):
     def test_handle_negative_numbers_with_negative_inputs(self):
         self.assertRaises(Exception, StringCalculator(
         ).handle_negative_numbers, [1, -4, 5, -7])
+
+
+if __name__ == '__main__':
+    unittest.main()
