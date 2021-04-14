@@ -5,7 +5,7 @@ from string_calculator import StringCalculator
 
 class TestPartOne(unittest.TestCase):
 
-    def test_add(self):
+    def test_add_list(self):
         self.assertEqual(StringCalculator().add_list([19, 2, 37]), 58)
 
     def test_add_large_number(self):
@@ -36,9 +36,13 @@ class TestPartOne(unittest.TestCase):
     def test_parse_input_with_newline_and_comma(self):
         self.assertEqual(StringCalculator().parse_input("1,\n2,3"), [1, 2, 3])
 
+    def test_parse_input_with_multiple_delimiters(self):
+        self.assertEqual(StringCalculator().parse_input(
+            "1$2@3", "$,@"), [1, 2, 3])
+
     def test_parse_input_with_arbitrary_length_delimiter(self):
         self.assertEqual(StringCalculator().parse_input(
-            "1$$$2$$$3", "$$$"), [1, 2, 3])
+            "1$$$2$$$3"), [1, 2, 3])
 
     def test_extract_delimiter_without_delimiter(self):
         self.assertEqual(StringCalculator().extract_delimiter(
@@ -55,6 +59,18 @@ class TestPartOne(unittest.TestCase):
     def test_extract_delimiter_with_arbitrary_length_delimiter(self):
         self.assertEqual(StringCalculator().extract_delimiter(
             "//$$$\n1$$$2$$$3"), ("1$$$2$$$3", "$$$"))
+
+    def test_extract_delimiter_with_multiple_delimiter(self):
+        self.assertEqual(StringCalculator().extract_delimiter(
+            "//$,@\n1$2@3"), ("1$2@3", "$,@"))
+
+    def test_extract_delimiter_multiple_delimiters_arbitrary_length(self):
+        self.assertEqual(StringCalculator().extract_delimiter(
+            "//$$$,@@\n1$$$2@@3"), ("1$$$2@@3", "$$$,@@"))
+
+    def test_extract_delimiter_multiple_delimiters_same_length(self):
+        self.assertEqual(StringCalculator().extract_delimiter(
+            "//$$,@@\n1$$2@@3"), ("1$$2@@3", "$$,@@"))
 
     def test_handle_negative_numbers_with_negative_inputs(self):
         self.assertRaises(Exception, StringCalculator(
