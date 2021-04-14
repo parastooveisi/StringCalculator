@@ -35,15 +35,15 @@ class TestPartOne(unittest.TestCase):
 
     def test_extract_delimiter_without_delimiter(self):
         self.assertEqual(StringCalculator().extract_delimiter(
-            "1,2,3"), ("", "1,2,3"))
+            "1,2,3"), ("1,2,3", ""))
 
     def test_extract_delimiter_with_comma_delimiter(self):
         self.assertEqual(StringCalculator().extract_delimiter(
-            "//,\n1,2,3"), (",", "1,2,3"))
+            "//,\n1,2,3"), ("1,2,3", ","))
 
     def test_extract_delimiter_with_custom_delimiter(self):
         self.assertEqual(StringCalculator().extract_delimiter(
-            "//$\n1,2,3"), ("$", "1,2,3"))
+            "//$\n1,2,3"), ("1,2,3", "$"))
 
     def test_handle_negative_numbers_with_negative_inputs(self):
         self.assertRaises(Exception, StringCalculator(

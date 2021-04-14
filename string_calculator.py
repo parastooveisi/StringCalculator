@@ -14,12 +14,12 @@ class StringCalculator:
 
         if delimiter_index == -1:
             # if there is no custom delimiter
-            return "", input_string
+            return input_string, ""
 
         new_line_index = input_string.find("\n")
         numbers_str = input_string[new_line_index + 1:]
         delimiter = input_string[input_string.find("//") + 2: new_line_index]
-        return delimiter, numbers_str
+        return numbers_str, delimiter
 
     def handle_negative_numbers(self, input_list):
 
