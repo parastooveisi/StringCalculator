@@ -20,3 +20,13 @@ class StringCalculator:
         numbers_str = input_string[new_line_index + 1:]
         delimiter = input_string[input_string.find("//") + 2: new_line_index]
         return delimiter, numbers_str
+
+    def handle_negative_numbers(self, input_list):
+
+        negatives_list = [n for n in input_list if n < 0]
+
+        if negatives_list:
+            raise Exception(
+                "Negatives not allowed: {list}".format(list=negatives_list))
+
+        return input_list
