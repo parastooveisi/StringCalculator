@@ -36,6 +36,10 @@ class TestPartOne(unittest.TestCase):
     def test_parse_input_with_newline_and_comma(self):
         self.assertEqual(StringCalculator().parse_input("1,\n2,3"), [1, 2, 3])
 
+    def test_parse_input_with_arbitrary_length_delimiter(self):
+        self.assertEqual(StringCalculator().parse_input(
+            "1$$$2$$$3", "$$$"), [1, 2, 3])
+
     def test_extract_delimiter_without_delimiter(self):
         self.assertEqual(StringCalculator().extract_delimiter(
             "1,2,3"), ("1,2,3", ","))
@@ -48,10 +52,10 @@ class TestPartOne(unittest.TestCase):
         self.assertEqual(StringCalculator().extract_delimiter(
             "//$\n1,2,3"), ("1,2,3", "$"))
 
+    def test_extract_delimiter_with_arbitrary_length_delimiter(self):
+        self.assertEqual(StringCalculator().extract_delimiter(
+            "//$$$\n1$$$2$$$3"), ("1$$$2$$$3", "$$$"))
+
     def test_handle_negative_numbers_with_negative_inputs(self):
         self.assertRaises(Exception, StringCalculator(
         ).handle_negative_numbers, [1, -4, 5, -7])
-
-    def test_handle_negative_numbers_without_negative_inputs(self):
-        self.assertEqual(
-            StringCalculator().handle_negative_numbers([1, 2, 3]), [1, 2, 3])
