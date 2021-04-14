@@ -1,18 +1,26 @@
-from string_calculator import StringCalculator
 import sys
+from _codecs import decode
+
+from string_calculator import StringCalculator
 
 
 def main():
-    calculator = StringCalculator()
+    if len(sys.argv) == 2:
 
-    numbers_str, delimiter = calculator.extract_delimiter(sys.argv[1])
+        calculator = StringCalculator()
 
-    numbers_list = calculator.parse_input(numbers_str, delimiter)
+        decoded_input = decode(sys.argv[1], 'unicode_escape')
 
-    result = calculator.add_list(
-        calculator.handle_negative_numbers(numbers_list))
+        numbers_str, delimiter = calculator.extract_delimiter(decoded_input)
+        numbers_list = calculator.parse_input(numbers_str, delimiter)
+        result = calculator.add_list(
+            calculator.handle_negative_numbers(numbers_list))
 
-    print(result)
+        print(result)
+    else:
+        print(
+            "Usage: python main.py //[delimiter]\\n[delimiter separated numbers]")
+        sys.exit(1)
 
 
 if __name__ == '__main__':
