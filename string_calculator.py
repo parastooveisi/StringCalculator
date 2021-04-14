@@ -3,9 +3,22 @@ import re
 
 class StringCalculator:
 
+    def add(self, input_string):
+        """(string) -> int
+            Return sum of numbers in a string with delimiter
+            >>> String_Calculator = StringCalculator()
+            >>> String_Calculator.add_list("//***\n1***2***3")
+            6
+        """
+
+        numbers_str, delimiter = self.extract_delimiter(input_string)
+        numbers_list = self.parse_input(numbers_str, delimiter)
+        result = self.add_list(self.handle_negative_numbers(numbers_list))
+        return result
+
     def add_list(self, input_list):
         """(list) -> int
-            Return the sum of numbers in the given list
+            Return the sum of numbers in a list
             >>> String_Calculator = StringCalculator()
             >>> String_Calculator.add_list([1,2,3])
             6
