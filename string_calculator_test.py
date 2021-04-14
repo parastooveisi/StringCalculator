@@ -5,6 +5,34 @@ from string_calculator import StringCalculator
 
 class TestPartOne(unittest.TestCase):
 
+    def test_add_comma_delimiter(self):
+        self.assertEqual(StringCalculator().add("1,2,3"), 6)
+
+    def test_add_empty_input(self):
+        self.assertEqual(StringCalculator().add(""), 0)
+
+    def test_add_comma_delimiter_with_new_line(self):
+        self.assertEqual(StringCalculator().add("\n10, 3, 5"), 18)
+
+    def test_add_custom_delimiter(self):
+        self.assertEqual(StringCalculator().add("//%\n1%3%4"), 8)
+
+    def test_add_negative_inputs(self):
+        self.assertRaises(Exception, StringCalculator(
+        ).handle_negative_numbers, "1, -4, 5, -7")
+
+    def test_add_large_numbers_bonus_one(self):
+        self.assertEqual(StringCalculator().add("1000,2000,3"), 3)
+
+    def test_add_delimiters_arbitrary_length_bonus_two(self):
+        self.assertEqual(StringCalculator().add("//$$\n1$$20$$3000"), 21)
+
+    def test_add_multiple_delimiters_bonus_three(self):
+        self.assertEqual(StringCalculator().add("//$,@,*\n1$2@3*6"), 12)
+
+    def test_add_multiple_delimiters_arbitrary_length_bonus_four(self):
+        self.assertEqual(StringCalculator().add("//$$,@\n1$$20@3000"), 21)
+
     def test_add_list(self):
         self.assertEqual(StringCalculator().add_list([19, 2, 37]), 58)
 

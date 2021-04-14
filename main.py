@@ -10,11 +10,7 @@ def main():
         calculator = StringCalculator()
 
         decoded_input = decode(sys.argv[1], 'unicode_escape')
-
-        numbers_str, delimiter = calculator.extract_delimiter(decoded_input)
-        numbers_list = calculator.parse_input(numbers_str, delimiter)
-        result = calculator.add_list(
-            calculator.handle_negative_numbers(numbers_list))
+        result = calculator.add(decoded_input)
 
         print(result)
     else:
