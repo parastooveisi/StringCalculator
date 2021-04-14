@@ -35,7 +35,7 @@ class TestPartOne(unittest.TestCase):
 
     def test_extract_delimiter_without_delimiter(self):
         self.assertEqual(StringCalculator().extract_delimiter(
-            "1,2,3"), ("1,2,3", ""))
+            "1,2,3"), ("1,2,3", ","))
 
     def test_extract_delimiter_with_comma_delimiter(self):
         self.assertEqual(StringCalculator().extract_delimiter(

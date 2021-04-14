@@ -14,7 +14,7 @@ class StringCalculator:
 
         if delimiter_index == -1:
             # if there is no custom delimiter
-            return input_string, ""
+            return input_string, ","
 
         new_line_index = input_string.find("\n")
         numbers_str = input_string[new_line_index + 1:]
