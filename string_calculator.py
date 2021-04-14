@@ -3,7 +3,8 @@ class StringCalculator:
     def add_list(self, input_list):
         result = 0
         for number in input_list:
-            result += number
+            if number < 1000:
+                result += number
         return result
 
     def parse_input(self, input_string, delimiter=','):

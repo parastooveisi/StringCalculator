@@ -8,6 +8,9 @@ class TestPartOne(unittest.TestCase):
     def test_add(self):
         self.assertEqual(StringCalculator().add_list([19, 2, 37]), 58)
 
+    def test_add_large_number(self):
+        self.assertEqual(StringCalculator().add_list([19, 2, 1000]), 21)
+
     def test_add_empty_list(self):
         self.assertEqual(StringCalculator().add_list([]), 0)
 
