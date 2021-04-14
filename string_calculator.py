@@ -6,5 +6,17 @@ class StringCalculator:
             result += number
         return result
 
-    def parse_input(self, input_string):
-        return [int(n) for n in input_string.split(",") if n]
+    def parse_input(self, input_string, delimiter=','):
+        return [int(n) for n in input_string.split(delimiter) if n]
+
+    def extract_delimiter(self, input_string):
+        delimiter_index = input_string.find("//")
+
+        if delimiter_index == -1:
+            # if there is no custom delimiter
+            return "", input_string
+
+        new_line_index = input_string.find("\n")
+        numbers_str = input_string[new_line_index + 1:]
+        delimiter = input_string[input_string.find("//") + 2: new_line_index]
+        return delimiter, numbers_str
